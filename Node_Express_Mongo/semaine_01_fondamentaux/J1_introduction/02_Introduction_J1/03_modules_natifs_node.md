@@ -120,6 +120,8 @@ process.stdin.on('data', (chunk) => {
 
 3. Pensez à gérer également les erreurs de saisi dans le jeu.
 
+4. Refacto du code dans un fichier à part que vous utiliserez dans le code de votre exercice.
+
 ## fs
 
 Ce module de Node permet de traiter les fichiers dans vos scripts. Vous pouvez lire, écrire ou supprimer des fichiers.
