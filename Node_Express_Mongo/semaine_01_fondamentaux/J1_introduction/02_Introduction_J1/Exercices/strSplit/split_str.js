@@ -3,7 +3,8 @@
 //     console.log(pharse);
 // };
 
-module.exports = function(pharse){
+
+export default function(pharse){
     
     return pharse.split('');
 };

@@ -13,6 +13,9 @@
 // importer un fichier 
 // utils nom du module
 // split_str nom de la fonction 
-const split_str = require('./split_str');
+// const split_str = require('./split_str');
+
+import split_str from './split_str.js';
+
 console.log(split_str('Bonjour le monde !'));
 
