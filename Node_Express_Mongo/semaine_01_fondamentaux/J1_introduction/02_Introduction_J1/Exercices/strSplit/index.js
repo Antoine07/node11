@@ -11,7 +11,8 @@
  */
 
 // importer un fichier 
-const utils = require('./utils');
-
-console.log(utils.utils('hhh'));
+// utils nom du module
+// split_str nom de la fonction 
+const split_str = require('./split_str');
+console.log(split_str('Bonjour le monde !'));
 
