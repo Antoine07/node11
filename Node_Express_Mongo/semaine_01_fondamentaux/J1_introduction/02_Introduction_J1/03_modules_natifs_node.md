@@ -215,5 +215,5 @@ Attention, il faut bien réfléchir avant d'écire le code de cet exercice, cert
 
 - 17 Clarisse Marseille
 
-7. Lire le fichier lui-même et mettez chaque nom en majuscule
+7. Lire le fichier lui-même et mettez chaque nom en majuscule, vous pouvez enregistrer cette mise en forme dans un nouveau fichier new_students.txt
 
