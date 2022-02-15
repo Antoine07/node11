@@ -122,7 +122,7 @@ const rl = readline.createInterface({
   
 ```
 
-## 01 Challenge Chiffoumi 
+## 01 Challenge Chiffoumi par équipe de 2
 
 Vous êtes maintenant en autonomie sur Discord et vous devez développer au moins la première partie, voyez les détails suivants 
 
@@ -130,13 +130,52 @@ Vous êtes maintenant en autonomie sur Discord et vous devez développer au moin
 
 Cet exercice est libre, vous devez implémenter le jeu Chifoumi avec les connaissances que nous venons d'aborder. Utilisez readline.
 
-Le jeu du Chifoumi se fera avec deux joueurs créer de manière automatique, par le script.
+Le jeu du Chifoumi se fera avec deux joueurs créer de manière automatique, par le script. Le jeu se fait donc tour par tour.
 
-Affichez une fois le jeu terminé les points gagnés par chaque joueur ainsi que le gagnant de la partie.
+Affichez une fois le jeu terminé les points gagnés par chaque joueur ainsi que le gagnant de la partie. 
+
+Créez un fichier dump.txt pour sauvegarder les parties.
 
 ### Partie 2 optionnelle 
 
-Si vous le souhaitez vous pouvez développer ce jeu avec un serveur Node.js pour les interactions.
+Si vous le souhaitez vous pouvez développer ce jeu avec un serveur Node.js afin d'afficher les résultats du jeu une fois la partie terminée. 
+
+Pour lancer le serveur tapez la ligne de commande suivante dans votre terminale :
+
+
+```bash
+node server.js
+```js
+
+- Exemple de serveur pour affichez vos résultats
+
+```js
+const http = require("http"); // module de Node.js
+
+// sur votre machine adresse locale
+const hostname = "localhost";
+// port
+const port = "8080";
+
+const server = http.createServer((req, res) => {
+    // on écrit définit la réponse qui sera envoyé au client qui visitera la page Web
+    // status de la réponse 200 et le type de la réponse
+  res.writeHead(200, {
+    "Content-Type": "text/html",
+  });
+
+  console.log(req.url );
+
+  // obligatoire réponse de votre serveur
+  res.write("<html><head></head><body><h1>Hello Server Node</h1></body></html>"); // méthode write et end
+  res.end();
+});
+
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
+
+```
 
 
 *Nous fairons la correction de ce TP demain matin.*
