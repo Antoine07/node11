@@ -1,0 +1,1 @@
+{"elems":["sheet","rock","chisel"],"nbElemen":3,"players":[{"name":"user","score":4,"choice":"sheet","status":false},{"name":"computer","score":6,"choice":"chisel","status":true}],"count":10,"max":10,"statusGame":false,"dump":"dump.json"}
