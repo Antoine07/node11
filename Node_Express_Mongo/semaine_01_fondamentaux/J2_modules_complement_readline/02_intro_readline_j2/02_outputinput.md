@@ -145,7 +145,7 @@ Pour lancer le serveur tapez la ligne de commande suivante dans votre terminale 
 
 ```bash
 node server.js
-```js
+```
 
 - Exemple de serveur pour affichez vos résultats
 
