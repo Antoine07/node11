@@ -39,3 +39,13 @@ server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
 ```
+
+Indications : pour traiter les données dans la vue on utilisera la syntaxe EJS suivante qui permet de mapper sur les données :
+
+```html
+<ul>
+<% students.map(student => { %>
+  <li><%= student.name %></li>
+<% }) %>
+</ul>
+```
