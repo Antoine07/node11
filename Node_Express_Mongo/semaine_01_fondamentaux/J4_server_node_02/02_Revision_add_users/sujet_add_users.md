@@ -23,13 +23,10 @@ server.js
 3. Les données, placez les dans le fichier server.js
 
 ```js
-const students = [
-    { name : "Sonia"},
-    { name : "Antoine"}
-];
+const students = [{ name: "Sonia" }, { name: "Antoine" }];
 ```
 
-4. Mettre la page principale en place avec les liens 
+4. Mettre la page principale en place avec les liens
 
 Voici le code de la page principale à mettre dans le fichier home.html. Vous devez également lire son contenu et le renvoyer au client.
 
@@ -47,6 +44,7 @@ Voici le code de la page principale à mettre dans le fichier home.html. Vous de
 
 <body>
     <div class="container">
+
         <div class="row">
             <div class="col-8">
                 <form action="/" method="POST">
@@ -60,9 +58,10 @@ Voici le code de la page principale à mettre dans le fichier home.html. Vous de
             </div>
         </div>
         <div class="col-4">
-            <p class="text-primary">
-                <a type="submit" class="btn" href="/users">users</a>
-            </p>
+            <nav>
+                <a href="/">Formulaire d'ajout</a>
+                <a href="/users">users</a>
+            </nav>
         </div>
     </div>
     </div>
@@ -74,35 +73,34 @@ Voici le code de la page principale à mettre dans le fichier home.html. Vous de
 Dans votre serveur maintenant, il faut récupérer les données POST, on détermine d'abord le type de requête qui est envoyé au serveur. Puis on stream les données qui arrivent et on les met dans une variable à l'aide de la méthode req.on, voyez l'exemple suivant, il est détaillé.
 
 ```js
-if (req.method === 'POST') {
-    // Handle post info...
-    let body = '';
-    req.on('data', data => {
-        body += data;
-    });
+if (req.method === "POST") {
+  // Handle post info...
+  let body = "";
+  req.on("data", (data) => {
+    body += data;
+  });
 
-    // On écoute maintenant la fin de l'envoi des données avec la méthode on et l'attribut end
-    req.on('end', () => {
-        res.writeHead(200, { 'Content-Type' : 'application/json' });
-        res.end( JSON.stringify({ "result" : body }));
-    });
+  // On écoute maintenant la fin de l'envoi des données avec la méthode on et l'attribut end
+  req.on("end", () => {
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ result: body }));
+  });
 }
 ```
 
-5. Gestion des css 
+5. Gestion des css
 
 Vous devez mettre un lien dans la page principale vers les CSS. Cependant, c'est le serveur qui va envoyer le contenu de ce fichier au client (navigateur dans notre cas). Voyez le code ci-dessous :
 
 ```js
- if (url === "bootstrap") {
-    res.writeHead(200, { "Content-Type": "text/css" });
-    const css = fs.readFileSync("./assets/css/bootstrap.min.css"); // on envoit le fichier au client
-    res.write(css);
-    res.end();
+if (url === "bootstrap") {
+  res.writeHead(200, { "Content-Type": "text/css" });
+  const css = fs.readFileSync("./assets/css/bootstrap.min.css"); // on envoit le fichier au client
+  res.write(css);
+  res.end();
 
-    return;
-  }
-
+  return;
+}
 ```
 
 6. Vous allez maintenant créer le formulaire permettant d'insérer un nouvel utilisateur. Utilisez l'exemple de code ci-dessous :
@@ -110,17 +108,17 @@ Vous devez mettre un lien dans la page principale vers les CSS. Cependant, c'est
 Récupérez les données POST, on déterminera le type de requête qui est envoyé au serveur, puis on stream les données qui arrivent, aidez-vous de l'exemple de code suivant :
 
 ```js
-if (req.method === 'POST') {
-    // Handle post info...
-    let body = '';
-    req.on('data', data => {
-        body += data;
-    });
+if (req.method === "POST") {
+  // Handle post info...
+  let body = "";
+  req.on("data", (data) => {
+    body += data;
+  });
 
-    // On écoute maintenant la fin de l'envoi des données avec la méthode on et l'attribut end
-    req.on('end', () => {
-        res.writeHead(200, { 'Content-Type' : 'application/json' });
-        res.end( JSON.stringify({ "result" : body }));
-    });
+  // On écoute maintenant la fin de l'envoi des données avec la méthode on et l'attribut end
+  req.on("end", () => {
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ result: body }));
+  });
 }
 ```
