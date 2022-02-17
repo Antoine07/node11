@@ -6,9 +6,12 @@
 
 Placez le bootstrap.min.css dans le fichier styles.css, nous allons gérer deux pages : la page d'accueil qui contiendra un formulaire et une page qui ne sera pas physiquement un fichier, mais qui sera gérée dans le code du serveur lui-même.
 
+Vous utiliserez ejs pour gérer l'affichage dynamique des données dans la vue.
+
 ```text
 view/
     home.html <-- formulaire
+    users.html <-- affichez l'ensemble des users ajoutés
 assets/
     css/
         bootstrap.min.css  <-- voir la gestion des css dans les questions ci-dessous
