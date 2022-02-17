@@ -1,0 +1,12 @@
+{
+  "name": "corrections",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js --ignore './Data/*'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
