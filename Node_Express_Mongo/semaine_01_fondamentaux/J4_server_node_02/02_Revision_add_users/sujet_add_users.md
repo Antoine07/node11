@@ -20,10 +20,10 @@ server.js
 
 2. Installez le projet comme d'habitude.
 
-3. Les données, placez les dans le fichier server.js
+3. Les données : placez les dans le fichier students.js que vous importerez dans le serveur.
 
 ```js
-const students = [{ name: "Sonia" }, { name: "Antoine" }];
+export const students = [{ name: "Sonia" }, { name: "Antoine" }];
 ```
 
 4. Mettre la page principale en place avec les liens
