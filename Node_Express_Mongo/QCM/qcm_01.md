@@ -480,7 +480,7 @@ Qu'affiche le script suivant ?
 const state1 = { a: 1, b : 2 };
 const state2 = { a: 10, c : 4}
 
-const STATE = [ ...state1, ...state2 ];
+const STATE = { ...state1, ...state2 };
 
 console.log(STATE);
 ```
