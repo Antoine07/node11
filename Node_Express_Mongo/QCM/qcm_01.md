@@ -65,7 +65,6 @@ Comment exportez-vous une valeur constante **name** qui vaut "Alan" se trouvant 
 
 Remarque on a ajouté dans le projet Node.js dans le fichier package.json "type" : "module"
 
-
 Répondez en choisissant une ou plusieurs bonne(s) réponse ci-dessous.
 
 [ ] 1
@@ -97,9 +96,7 @@ export fonction() { return name ;}
 Comment importez-vous une constante name dans le fichier server.js depuis un export d'un fichier fais comme suit :
 
 ```js
-
-export const name =  "Alan";
-
+export const name = "Alan";
 ```
 
 Remarque on a ajouté dans le projet Node.js dans le fichier package.json "type" : "module"
@@ -109,21 +106,21 @@ Répondez en choisissant une seule ou plusieurs bonne(s) réponse(s) ci-dessous.
 [ ] 1
 
 ```js
-import { name } from './utils'; 
+import { name } from "./utils";
 console.log(name);
 ```
 
 [ ] 2
 
 ```js
-import { name } from './utils.js'; 
+import { name } from "./utils.js";
 console.log(name);
 ```
 
 [ ] 3
 
 ```js
-import  name  from './utils'; 
+import name from "./utils";
 console.log(name);
 ```
 
@@ -315,6 +312,8 @@ Répondez en choisissant une seule et bonne réponse ci-dessous.
 
 ```js
 const server = http.createServer((req, res) => {
+  const url = req.url.replace("/", "");
+
   if (url === "bootstrap") {
     res.writeHead(200, { "Content-Type": "text/css" });
     const css = fs.readFileSync("./assets/css/bootstrap.min.css"); // on envoit le fichier au client
@@ -485,8 +484,8 @@ while (count > 0) {
 Qu'affiche le script suivant ?
 
 ```js
-const state1 = { a: 1, b : 2 };
-const state2 = { a: 10, c : 4}
+const state1 = { a: 1, b: 2 };
+const state2 = { a: 10, c: 4 };
 
 const STATE = { ...state1, ...state2 };
 
@@ -516,6 +515,7 @@ Répondez en choisissant une ou plusieurs bonnes réponses ci-dessous :
 [ ] 4
 
 ```js
-{ c : 4}
+{
+  c: 4;
+}
 ```
-
