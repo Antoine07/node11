@@ -1,14 +1,13 @@
-import { readFileSync } from "fs";
+import { readFileSync, writeFileSync } from "fs";
 import { parse } from "querystring";
-import ejs from "ejs";
+import { renderFile } from "ejs";
 import "dotenv/config";
 
 const { APP_HOST: hostname, APP_PORT: port } = process.env;
 
-const students = [
-  { name: "Sonia", age: 45 },
-  { name: "Antoine", age: 50 },
-];
+/**
+ * TODO bonne pratique faire des controllers pour séparer les responsabilités
+ */
 
 export default (req, res) => {
   const url = req.url.replace("/", "");
@@ -21,11 +20,12 @@ export default (req, res) => {
 
     case "":
       if (req.method === "GET") {
-        console.log(students);
-        const home = readFileSync("./views/home.ejs", "utf-8");
         res.writeHead(200, { "Content-Type": "text/html" });
-        res.write(ejs.render(home));
-        res.end();
+
+        renderFile("./views/home.ejs", (err, str) => {
+          res.write(str);
+          res.end();
+        });
 
         break;
       }
@@ -38,7 +38,19 @@ export default (req, res) => {
 
         req.on("end", () => {
           const { name, age } = parse(body);
-          students.push({ name, age: parseInt(age) });
+
+          let newStudents = JSON.parse(
+            readFileSync("./Data/students.json", "utf-8")
+          ).students;
+
+          newStudents.push({ name, age, id: Date.now() });
+
+          writeFileSync(
+            "./Data/students.json",
+            JSON.stringify({ students: newStudents }),
+            "utf-8"
+          );
+
           res.writeHead(302, { Location: `http://${hostname}:${port}` });
 
           res.end();
@@ -48,10 +60,53 @@ export default (req, res) => {
       }
 
     case "students":
-      const students_tpl = readFileSync("./views/students.ejs", "utf-8");
       res.writeHead(200, { "Content-Type": "text/html" });
-      res.write(ejs.render(students_tpl, { students }));
+      // EJS qui fait sa propre lecture de fichier et c'est important de passer par renderFile pour utiliser les vues partielles
+      renderFile(
+        "./views/students.ejs",
+        {
+          students: JSON.parse(readFileSync("./Data/students.json", "utf-8"))
+            .students,
+        },
+        (err, str) => {
+          res.write(str);
 
+          res.end();
+        }
+      );
+
+      break;
+
+    case "delete":
+      if (req.method === "POST") {
+        let body = "";
+        req.on("data", (data) => {
+          body += data.toString();
+        });
+
+        req.on("end", () => {
+          const { id } = parse(body);
+
+          const students = JSON.parse(
+            readFileSync("./Data/students.json", "utf-8")
+          ).students.filter((s) => s.id != id);
+
+          writeFileSync(
+            "./Data/students.json",
+            JSON.stringify({ students }),
+            "utf-8"
+          );
+
+          res.writeHead(302, { Location: `http://${hostname}:${port}` });
+
+          res.end();
+        });
+
+        break;
+      }
+
+      // si on arrivait en Get je redirige vers la page HOME
+      res.writeHead(302, { Location: `http://${hostname}:${port}` });
       res.end();
 
       break;

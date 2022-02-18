@@ -1,26 +1,13 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <title>Ajoutez un utilisateur</title>
-    <link href="/bootstrap" rel="stylesheet" type="text/css" />
-</head>
-
-<body>
-    <div class="container">
-        <nav>
-            <a href="/">Formulaire d'ajout</a>
-            <a href="/students">Students</a>
-        </nav>
-    </div>
+<%- include('partials/header') %>
     <div class="container">
         <div class="row">
             <div class="col-8">
                 <ul>
-                <% if (students) { %>
+                <% if (students.length > 0) { %>
                     <% students.map(student => { %>
-                    <li><%= student.name %> age : <%= student.age %></li>
+                    <li><%= student.id %>) <%= student.name %> age : <%= student.age %>
+                        <%- include('partials/delete', { id : student.id }) ;%>
+                    </li>
                     <% }) %>
                  <% } else { %>
                     <li>Aucun étudiant en base de données</li>
