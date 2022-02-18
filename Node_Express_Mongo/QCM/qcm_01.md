@@ -63,66 +63,74 @@ fs.readFile("/Data/titanic.txt", "utf8", (err, data) => {
 
 Comment exportez-vous une valeur constante **name** qui vaut "Alan" se trouvant dans un fichier donnée JS dans le fichier de votre serveur server.js ?
 
-Répondez en choisissant une seule et bonne réponse ci-dessous.
+Remarque on a ajouté dans le projet Node.js dans le fichier package.json "type" : "module"
+
+
+Répondez en choisissant une ou plusieurs bonne(s) réponse ci-dessous.
 
 [ ] 1
 
 ```js
-exports.name = "Alan";
+export name;
 ```
 
 [ ] 2
 
 ```js
-exports = "Alan";
+export const name;
 ```
 
 [ ] 3
 
 ```js
-exports = { name: "Alan" };
+export default name;
 ```
 
 [ ] 4
 
 ```js
-exports = function name() {
-  return "Alan";
-};
+export fonction() { return name ;}
 ```
 
 ## Question 05
 
-Comment importez-vous (récupérez-vous) depuis un fichier utils.js, une valeur dont le nom de la propriété est "name" ?
+Comment importez-vous une constante name dans le fichier server.js depuis un export d'un fichier fais comme suit :
+
+```js
+
+export const name =  "Alan";
+
+```
+
+Remarque on a ajouté dans le projet Node.js dans le fichier package.json "type" : "module"
 
 Répondez en choisissant une seule ou plusieurs bonne(s) réponse(s) ci-dessous.
 
 [ ] 1
 
 ```js
-const name = require("./utils")["name"];
+import { name } from './utils'; 
 console.log(name);
 ```
 
 [ ] 2
 
 ```js
-const name = require("./utils");
+import { name } from './utils.js'; 
 console.log(name);
 ```
 
 [ ] 3
 
 ```js
-const utils = require("./utils");
-console.log(utils.name);
+import  name  from './utils'; 
+console.log(name);
 ```
 
 [ ] 4
 
 ```js
-const { name } = require("./utils");
-
+from 'utils.js' import { name }
 console.log(name);
 ```
 
